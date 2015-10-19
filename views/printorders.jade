@@ -1,0 +1,40 @@
+extends layout
+block content
+	h1 Print orders
+	br
+	table
+		tr
+			th ship an order
+			th orderID
+			th orderStatus
+			th itemName
+			th cFname
+			th cLname
+			th pMethod
+			th itemPrice
+			th StoAddr
+			th StoCity
+			th StoState
+			th StoZip
+			th StoCountry
+			th cPhone
+		tr
+		for x in orders
+			tr
+			td
+				form(method='post')
+					input(type='hidden', name='orderID', value='#{x.orderID}')
+					input(type='submit', value='print')
+			td #{x.orderID}		
+			td #{x.orderStatus}
+			td #{x.itemName}
+			td #{x.cFname}
+			td #{x.cLname}
+			td #{x.pMethod}
+			td #{x.itemPrice}
+			td #{x.StoAddr}
+			td #{x.StoCity}
+			td #{x.StoState}
+			td #{x.StoZip}
+			td #{x.StoCountry}
+			td #{x.cPhone}

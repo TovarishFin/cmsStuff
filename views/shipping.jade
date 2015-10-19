@@ -1,0 +1,48 @@
+extends layout
+block content
+	h1 Run Payment for an Order
+	br
+	table
+		tr
+			th ship an order
+			th orderID
+			th orderStatus
+			th itemName
+			th cFname
+			th cLname
+			th pMethod
+			th itemPrice
+			th StoAddr
+			th StoCity
+			th StoState
+			th StoZip
+			th StoCountry
+			th cPhone
+		tr
+		for x in orders
+			tr
+			td
+				form(method='post')
+					input(type='hidden', name='StoAddr', value='#{x.StoAddr}')
+					input(type='hidden', name='StoCity', value='#{x.StoCity}')
+					input(type='hidden', name='StoState', value='#{x.StoState}')
+					input(type='hidden', name='StoZip', value='#{x.StoZip}')
+					input(type='hidden', name='StoCountry', value='#{x.StoCountry}')
+					input(type='hidden', name='cFname', value='#{x.cFname}')
+					input(type='hidden', name='cLname', value='#{x.cLname}')
+					input(type='hidden', name='cPhone', value='#{x.cPhone}')
+					input(type='hidden', name='orderID', value='#{x.orderID}')
+					input(type='submit')
+			td #{x.orderID}		
+			td #{x.orderStatus}
+			td #{x.itemName}
+			td #{x.cFname}
+			td #{x.cLname}
+			td #{x.pMethod}
+			td #{x.itemPrice}
+			td #{x.StoAddr}
+			td #{x.StoCity}
+			td #{x.StoState}
+			td #{x.StoZip}
+			td #{x.StoCountry}
+			td #{x.cPhone}

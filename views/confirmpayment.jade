@@ -1,0 +1,47 @@
+extends layout
+block content
+	h1 Run Payment for an Order
+	br
+	
+
+	table
+		tr
+			th run payment
+			th orderID
+			th orderStatus
+			th itemName
+			th cFname
+			th cLname
+			th pMethod
+			th itemPrice
+			th ccNumber
+			th ccExpDate
+			th ccCode
+			th BtoAddr
+			th BtoCity
+			th BtoState
+			th BtoZip
+			th BtoCountry
+		tr
+		for x in orders
+			tr
+			td
+				form(action='', method='POST')
+					script.stripe-button(src='https://checkout.stripe.com/checkout.js', data-key='pk_test_klD2f0YLXLE4xWjjvgiBtqAu', data-amount='#{x.itemPrice*100}', data-name='Demo Site', data-description='2 widgets ($20.00)', data-image='/128x128.png', data-locale='auto')
+					input(type='hidden', name='orderID', value='#{x.orderID}')
+					input(type='hidden', name='chargePrice', value='#{x.itemPrice}')
+			td #{x.orderID}		
+			td #{x.orderStatus}
+			td #{x.itemName}
+			td #{x.cFname}
+			td #{x.cLname}
+			td #{x.pMethod}
+			td #{x.itemPrice}
+			td #{x.ccNumber}
+			td #{x.ccExpDate}
+			td #{x.ccCode}
+			td #{x.BtoAddr}
+			td #{x.BtoCity}
+			td #{x.BtoState}
+			td #{x.BtoZip}
+			td #{x.BtoCountry}

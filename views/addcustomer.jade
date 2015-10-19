@@ -1,0 +1,117 @@
+extends layout
+block content
+	h1 Add Customer To Database
+	form(method="post")
+		span cFname :
+		input(type="text",name="cFname",required=true)
+		br
+		span cLname :
+		input(type="text",name="cLname",required=true)
+		br
+		span ccNumber :
+		input(type="text",name="ccNumber",required=true)
+		br
+		span ccExpDate :
+		input(type="text",name="ccExpDate",required=true)
+		br
+		span ccCode :
+		input(type="text",name="ccCode",required=true)
+		br
+		span BtoAddr:
+		input(type="text",name="BtoAddr",required=true)
+		br
+		span BtoCity :
+		input(type="text",name="BtoCity",required=true)
+		br
+		span BtoState :
+		input(type="text",name="BtoState",required=true)
+		br
+		span BtoZip :
+		input(type="text",name="BtoZip",required=true)
+		br
+		span BtoCountry :
+		input(type="text",name="BtoCountry",required=true)
+		br
+		span StoAddr :
+		input(type="text",name="StoAddr",required=true)
+		br
+		span StoCity :
+		input(type="text",name="StoCity",required=true)
+		br
+		span StoState :
+		input(type="text",name="StoState",required=true)
+		br
+		span StoZip :
+		input(type="text",name="StoZip",required=true)
+		br
+		span StoCountry :
+		input(type="text",name="StoCountry",required=true)
+		br
+		span cPhone:
+		input(type="text",name="cPhone",required=true)
+		input(type="hidden", name="previousCustomer", value=0)
+		br
+		input(type="submit")
+	br
+	h1 customers db
+	table
+		tr
+			th Add Customer Info
+			th customerID	
+			th cFname
+			th cLname
+			th ccNumber
+			th ccExpDate
+			th ccCode
+			th BtoAddr
+			th BtoCity
+			th BtoState
+			th BtoZip
+			th BtoCountry
+			th StoAddr
+			th StoCity
+			th StoState
+			th StoZip
+			th StoCountry
+			th cPhone
+		tr
+			for x in customers
+				tr
+					td
+						form(method="post")
+							input(type="hidden",name="customerID",value="#{x.customerID}")
+							input(type="hidden",name="cFname",value="#{x.cFname}")
+							input(type="hidden",name="cLname",value="#{x.cLname}")
+							input(type="hidden",name="ccNumber",value="#{x.ccNumber}")
+							input(type="hidden",name="ccExpDate",value="#{x.ccExpDate}")
+							input(type="hidden",name="ccCode",value="#{x.ccCode}")
+							input(type="hidden",name="BtoAddr",value="#{x.BtoAddr}")
+							input(type="hidden",name="BtoCity",value="#{x.BtoCity}")
+							input(type="hidden",name="BtoState",value="#{x.BtoState}")
+							input(type="hidden",name="BtoZip",value="#{x.BtoZip}")
+							input(type="hidden",name="BtoCountry",value="#{x.BtoCountry}")
+							input(type="hidden",name="StoAddr",value="#{x.StoAddr}")
+							input(type="hidden",name="StoCity",value="#{x.StoCity}")
+							input(type="hidden",name="StoState",value="#{x.StoState}")
+							input(type="hidden",name="StoZip",value="#{x.StoZip}")
+							input(type="hidden",name="StoCountry",value="#{x.StoCountry}")
+							input(type="hidden",name="cPhone",value="#{x.cPhone}")
+							input(type="hidden",name="previousCustomer",value=1)
+							input(type="submit")
+					td #{x.customerID}
+					td #{x.cFname}
+					td #{x.cLname}
+					td #{x.ccNumber}
+					td #{x.ccExpDate}
+					td #{x.ccCode}
+					td #{x.BtoAddr}
+					td #{x.BtoCity}
+					td #{x.BtoState}
+					td #{x.BtoZip}
+					td #{x.BtoCountry}
+					td #{x.StoAddr}
+					td #{x.StoCity}
+					td #{x.StoState}
+					td #{x.StoZip}
+					td #{x.StoCountry}
+					td #{x.cPhone}

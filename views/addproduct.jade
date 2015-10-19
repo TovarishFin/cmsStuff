@@ -1,0 +1,26 @@
+extends layout
+block content
+	h1 Add Product To Database
+	form(method="post")
+		span Product Name
+		input(name="prodName",type="text",value="Product Name")
+		br
+		span Product Code
+		input(name="prodCode",type="text",value="Product Code")
+		br
+		span Product Price
+		input(name="prodPrice",type="text",value="Product Price")
+		br
+		input(type="submit")
+		br
+		table
+			tr
+				th Product Name
+				th Product Code
+				th Product Price 
+				for x in products
+					tr
+						td #{x.prodName}
+						td #{x.prodCode}
+						td #{x.prodPrice}
+		

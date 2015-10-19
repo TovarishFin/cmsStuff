@@ -1,0 +1,38 @@
+extends layout
+block content
+	h1 Add Order To Database
+	form(method="post")
+		span Item Name
+		select(name="itemName")
+			for x in products
+				option(value="#{x.prodName}") #{x.prodName}
+		br
+		span Payment Method
+		select(name="pMethod")
+			for x in pMethods
+				option(value="#{x.type}") #{x.type}
+		br
+		span Order Status
+		input(name="orderStatus",type="text",value="0")
+		br
+		input(type="hidden", name="itemPrice", value=100)
+		input(type="submit")
+		br
+		table
+			tr
+				th Item Name
+				th Payment Method
+				th Order Status
+				th Item Price
+				th cFname
+				th cLname
+				th pMethod
+				for x in orders
+					tr
+						td #{x.itemName}
+						td #{x.pMethod}
+						td #{x.orderStatus}
+						td #{x.itemPrice}
+						td #{x.cFname}
+						td #{x.cLname}
+						td #{x.pMethod}

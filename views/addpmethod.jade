@@ -1,0 +1,15 @@
+extends layout
+block content
+	h1 add payment methods here
+	form(method='post')
+		input(type='text', name='type', value='type')
+		br
+		input(type='submit')
+		br
+		table
+			tr
+				th type
+				for x in pMethods
+					tr
+						td #{x.type}
+

@@ -24,6 +24,7 @@ block content
 			td
 				form(method='post')
 					input(type='hidden', name='orderID', value='#{x.orderID}')
+					input(type='hidden',name='sLabel',value='#{x.sLabel}')
 					input(type='submit', value='print')
 			td #{x.orderID}		
 			td #{x.orderStatus}

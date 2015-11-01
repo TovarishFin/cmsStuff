@@ -17,6 +17,7 @@
     "express-session": "~1.11.3",
     "stripe": "~4.0.0",
     "shortid": "~2.2.4",
-    "postmaster-shipping": "~1.0.7"
+    "postmaster-shipping": "~1.0.7",
+    "print-url": "~1.0.2"
   }
 }

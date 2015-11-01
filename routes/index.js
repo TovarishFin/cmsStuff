@@ -9,7 +9,7 @@ var session = require('express-session');
 var stripe = require('stripe')('sk_test_6ydpToQCedRDhc8SYyyLyDfM');
 var shortid = require('shortid');
 var postmaster = require('postmaster-shipping')({
-	apiKey: 'tt_MTMyOTEwMDE6NU5fWENFNllxZG15cnhPMkhtcWZmLUhlUGcw',
+	apiKey: 'tt_MTUyNDEwMDE6dGZ1aUh5Vl84aEwtLW4zdW5BNmlucWpkZEZR',
 	password: 'Steelseries88'
 },true);
 	
@@ -31,6 +31,7 @@ router.get('/addpmethod',function(req,res){
 	pMethod.find({},function(err, pMethods){
 		if(err){
 			console.error(err);
+			res.send(err);
 		} else {
 			res.render('addpmethod',{pMethods:pMethods});
 		}
@@ -43,6 +44,7 @@ router.post('/addpmethod',function(req,res){
 	newpMethod.save(function(err,name){
 		if(err){
 			console.error(err);
+			res.send(err);
 		} else {
 			res.send('payment method saved successfully, go back to continue.')
 		}
@@ -53,6 +55,7 @@ router.get('/addproduct', function(req,res){
 	Product.find({},function(err,products){
 		if(err){
 			console.error(err);
+			res.send(err);
 		} else {
 			res.render('addproduct',{products:products});
 		}
@@ -67,10 +70,12 @@ router.post('/addproduct',function(req,res){
 	newProduct.save(function(err,name){
 		if(err){
 			console.error(err);
+			res.send(err);
 		} else {
 			Product.findOne({prodName:req.body.prodName},function(err, products){
 				if(err){
 					console.error(err);
+					res.send(err);
 				}else {
 					res.send('product added successfully, go back to continue');
 }
@@ -82,15 +87,18 @@ router.post('/addproduct',function(req,res){
 router.get('/addorder',function(req,res){
 	Order.find({},function(err, orders){
 		if(err){
-			console.error(err)
+			console.error(err);
+			res.send(err);
 		} else {
 			pMethod.find({},function(err, pMethods){
 				if(err){
 					console.error(err);
+					res.send(err);
 				} else {
 					Product.find({},function(err,products){
 						if(err){
 							console.error(err);
+							res.send(err);
 						} else {
 						res.render('addorder',{orders:orders, pMethods:pMethods, products:products});
 						console.log(orders, pMethods, products)
@@ -140,6 +148,7 @@ router.post('/addcustomer',function(req,res){
 	newOrder.save(function(err,name){
 		if(err){
 			console.error(err);
+			res.send(err);
 		} else {
 			console.log('order with customer info saved successfully...');
 		}
@@ -168,6 +177,7 @@ router.post('/addcustomer',function(req,res){
 			newCustomer.save(function(err,name){
 				if(err){
 					console.error(err);
+					res.send(err);
 				} else {
 					res.send('customer info/order saved');
 				}
@@ -181,7 +191,8 @@ router.post('/addcustomer',function(req,res){
 router.get('/runpayment', function(req,res){
 	Order.find({orderStatus:0},function(err,orders){
 		if(err){
-			console.error(err)
+			console.error(err);
+			res.send(err);
 		} else {
 	res.render('runpayment',{orders:orders});
 		}
@@ -219,6 +230,7 @@ router.get('/paidorders', function(req,res){
 router.post('/paidorders',function(req,res){
 	Order.findOneAndUpdate({orderID:req.body.orderID},{orderStatus:2},function(err,order){
 		if(err){
+			console.error(err);
 			res.send(error);
 		} else {
 			res.send('order was approved by qa and moved to status "2"');
@@ -228,7 +240,8 @@ router.post('/paidorders',function(req,res){
 router.get('/shipping',function(req,res){
 	Order.find({orderStatus:2},function(err,orders){
 		if(err){
-			res.send(err)
+			console.error(err);
+			res.send(err);
 		} else {
 			res.render('shipping',{orders:orders});
 		}
@@ -257,9 +270,10 @@ router.post('/shipping',function(req,res){
 		if (err){
 			res.send(err);
 		} else {
-			Order.findOneAndUpdate({orderID:req.body.orderID},{orderStatus:3,tNum:response.tracking[0],sLabel:response.packages[0].label_url},function(err,order){
+			Order.findOneAndUpdate({orderID:req.body.orderID},{orderStatus:3,tNum:response.tracking[0],sLabel:response.packages[0].label_url,postID:response.id},function(err,order){
 				if(err){
-					res.send(err)
+					console.error(err);
+					res.send(err);
 				} else {
 					res.send('shipping label has been created at '+'api.postmaster.io'+response.packages[0].label_url+' and order status has been updated to 3');
 					console.log(response);
@@ -272,7 +286,8 @@ router.post('/shipping',function(req,res){
 router.get('/printorders',function(req,res){
 	Order.find({orderStatus:3},function(err,orders){
 		if(err){
-			console.error(err)
+			console.error(err);
+			res.send(err);
 		} else {
 			res.render('printorders',{orders:orders});
 		}
@@ -284,55 +299,22 @@ router.post('/printorders',function(req,res){
 			console.error(err);
 			res.send(err);
 		} else {
-			res.send('order printed, order status updated to 4');
+			res.redirect('http://api.postmaster.io'+req.body.sLabel);
+			res.send('order printed');
 		}
 	});
 });
 
 
 router.get('/test',function(req,res){
-	json={ status: 'Processing',
-  commercial_invoice: '',
-  tracking: [ '1Z8V81310298767935' ],
-  cost: 1710,
-  prepaid: false,
-  service: '2DAY',
-  package_count: 1,
-  created_at: 1445208125,
-  saturday: false,
-  to: 
-   { city: 'Reno',
-     country: 'US',
-     company: 'personal',
-     phone_no: '7752743272',
-     line1: '1426 Camden Street',
-     state: 'NV',
-     contact: 'Gary Russell',
-     residential: true,
-     zip_code: '89501' },
-  carrier: 'ups',
-  id: 5672749318012928,
-  from: 
-   { city: 'Reno',
-     country: 'US',
-     company: 'derpology inc.',
-     phone_no: '775-274-3272',
-     line1: '1426 Camden Street',
-     state: 'NV',
-     contact: 'derpmaster funk',
-     residential: true,
-     zip_code: '89501' },
-  packages: 
-   [ { weight_units: 'LB',
-       weight: 1.5,
-       type: 'CUSTOM',
-       height: 8,
-       width: 6,
-       length: 10,
-       label_url: '/v1/label/AMIfv95UNRC6i7haV5Vy4PiGTlXlPtemCzQNX0ZHQupNAbHHsXvfSpJj8hylShaPftCPAO8FKCxnEjms8y8vTj1Lt63nuCu6cEbkfHpXc8P8WD1_1ue8DmWXe_OiZmaf0mG9RKYJcaSdwVJWm-63P_duwRA0KT5QlZVDluOX7SUB6QSJWUXl2yI',
-       dimension_units: 'IN' } ],
-  additional_data: {} }
-res.send(json);
+	postmaster.v1.track.byId(5629499534213120,function(err,response){
+		if(err){
+			res.send(err);
+			console.error(err);
+		} else {
+			res.send(response);
+		}
+	});
 });
 
 module.exports = router;

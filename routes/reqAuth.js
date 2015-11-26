@@ -7,5 +7,6 @@ router.use(require('./payment'));
 router.use(require('./review'));
 router.use(require('./shipping'));
 router.use(require('./printorders.js'));
+router.use(require('./index'));
 
 module.exports=router;

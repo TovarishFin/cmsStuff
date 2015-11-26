@@ -6,9 +6,6 @@ var postmaster = require('postmaster-shipping')({
 	password: 'SteelSeries88'
 },true);
 	
-router.use(require('./reqAuth'))
-
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });

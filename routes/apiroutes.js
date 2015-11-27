@@ -4,6 +4,7 @@ var passport = require('passport');
 var authController = require('../controllers/auth');
 var Order = require('../models/orders').order;
 var shortid = require('shortid');
+router.use(require('./sendItems'));
 router.post('/orders',authController.postAuthenticate,function(req,res){
 	var newOrder = new Order({
 		itemName: req.body.itemName,

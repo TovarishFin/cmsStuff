@@ -1,12 +1,14 @@
-var express=require('express'),
-router=express.Router();
-router.use(require('./add'));
-router.use(require('./addorder'));
-router.use(require('./addcustomer'));
-router.use(require('./payment'));
-router.use(require('./review'));
-router.use(require('./shipping'));
-router.use(require('./printorders.js'));
+var express=require('express')
+var router=express.Router();
+var reqUserType = require('../controllers/loggedin').reqUserType
+
 router.use(require('./index'));
+router.use(reqUserType('cs'),require('./addorder'));
+router.use(reqUserType('cs'),require('./addcustomer'));
+router.use(reqUserType('cs'),require('./payment'));
+router.use(reqUserType('qa'),require('./review'));
+router.use(reqUserType('cs'),require('./shipping'));
+router.use(reqUserType('wh'),require('./printorders.js'));
+router.use(reqUserType('admin'),require('./add'));
 
 module.exports=router;

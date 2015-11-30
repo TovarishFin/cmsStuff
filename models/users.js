@@ -14,7 +14,7 @@ var UserSchema = new mongoose.Schema({
     required: true
   },
   email: String,
-  type: String
+  usertype: String
 });
 
 // Execute before each user.save() call

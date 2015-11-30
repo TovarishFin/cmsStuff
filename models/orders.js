@@ -23,7 +23,13 @@ var orderSchema = new mongoose.Schema({
 	cPhone: Number,
 	tNum: String,
 	sLabel: String,
-	postID:Number
+	postID:Number,
+	user:String,
+	date:{
+		type: Date,
+		default: Date.now
+	}
+	
 },{collection:'orders'});
 var order= mongoose.model('Orders', orderSchema);
 module.exports={

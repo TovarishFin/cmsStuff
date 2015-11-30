@@ -7,13 +7,12 @@ var shortid = require('shortid');
 var Product = require('../models/products.js').product
 router.post('/senditems', authController.postAuthenticate, function(req,res){
 	if(req.body.service ='sendItems'){
-		Product.find({},function(err,products){
-			res.send(products);
+		Product.find({}).lean().exec(function(err,products){
+			res.json(products);
 			console.log('sent products');
 		});
 	} else {
 		console.log(err);
 	}
 });
-
 module.exports = router;

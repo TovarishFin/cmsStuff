@@ -37,17 +37,11 @@ passport.use(new LocalStrategy(
 passport.use(new BasicStrategy(
 	function(username, password, callback){
 		User.findOne({username:username},function(err,user){
-			console.log(1)
 			if(err){return callback(null,false);}
-			console.log(2)
 			if(!user){return callback(null,false);}
-			console.log(3)
 			user.verifyPassword(password,function(err,isMatch){
-				console.log(4)
 				if(err){return callback(err);}
-				console.log(5)
 				if(!isMatch){return callback(null,false);}
-				console.log(6)
 				return callback(null,user);
 			});
 		});

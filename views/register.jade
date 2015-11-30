@@ -8,4 +8,14 @@ block content
 		span password
 		input(type="password",name="password")
 		br
-		input(type="submit",value="login")
+		span email
+		input(type="text",name="email")
+		br
+		span type
+		select
+			option(value="admin",name="admin") admin
+			option(value="cs",name="cs") cs
+			option(value="qa",name="qa") qa
+			option(value="ret",name="ret") ret
+		br
+		input(type="submit",value="register")

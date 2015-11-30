@@ -32,7 +32,8 @@ router.post('/addcustomer',function(req,res){
 		StoZip:req.body.StoZip,
 		StoCountry:req.body.StoCountry,
 		cPhone: req.body.cPhone,
-		orderID: shortid.generate()
+		orderID: shortid.generate(),
+		user: req.user.username
 	});
 	newOrder.save(function(err,name){
 		if(err){

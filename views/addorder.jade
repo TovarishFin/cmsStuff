@@ -27,6 +27,9 @@ block content
 				th cFname
 				th cLname
 				th pMethod
+				th user
+				th date
+				th order id
 				for x in orders
 					tr
 						td #{x.itemName}
@@ -36,3 +39,7 @@ block content
 						td #{x.cFname}
 						td #{x.cLname}
 						td #{x.pMethod}
+						td #{x.user}
+						td #{x.date}
+						td #{x.orderID}
+						

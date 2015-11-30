@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
-var Product = require('../models/products.js').product
-var pMethod = require('../models/pmethods.js').pMethod
+var Product = require('../../../models/products.js').product
+var pMethod = require('../../../models/pmethods.js').pMethod
 
 
 router.get('/addpmethod',function(req,res){

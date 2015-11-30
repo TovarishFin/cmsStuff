@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var authController = require('../controllers/auth');
-var Order = require('../models/orders').order;
+var authController = require('../../../controllers/auth');
+var Order = require('../../../models/orders').order;
 var shortid = require('shortid');
 
 router.post('/orders',authController.postAuthenticate,function(req,res){

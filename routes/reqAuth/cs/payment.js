@@ -1,6 +1,6 @@
 express=require('express');
 router=express.Router();
-var Order = require('../models/orders.js').order
+var Order = require('../../../models/orders.js').order
 var stripe = require('stripe')('sk_test_6ydpToQCedRDhc8SYyyLyDfM');
 router.get('/runpayment', function(req,res){
 	Order.find({orderStatus:0},function(err,orders){

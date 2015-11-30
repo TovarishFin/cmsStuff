@@ -1,6 +1,6 @@
 express=require('express');
 router=express.Router();
-Order=require('../models/orders.js').order
+Order=require('../../../models/orders.js').order
 
 router.get('/printorders',function(req,res){
 	Order.find({orderStatus:3},function(err,orders){

@@ -1,7 +1,7 @@
 var express = require('express');
 router = express.Router();
 var mongoose = require('mongoose');
-var User = require('../models/users.js');
+var User = require('../../models/users.js');
 router.get('/register',function(req,res){
 	res.render('register');
 });

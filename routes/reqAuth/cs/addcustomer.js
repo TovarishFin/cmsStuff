@@ -1,7 +1,7 @@
 var express=require('express');
 router=express.Router();
-var Customer = require('../models/customers.js').customer
-var Order = require('../models/orders.js').order
+var Customer = require('../../../models/customers.js').customer
+var Order = require('../../../models/orders.js').order
 var shortid = require('shortid');
 
 router.get('/addcustomer',function(req,res){

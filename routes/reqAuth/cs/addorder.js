@@ -1,9 +1,9 @@
 var express=require('express')
 var router=express.Router();
 var session = require('express-session');
-var Order = require('../models/orders.js').order
-var pMethod = require('../models/pmethods.js').pMethod
-var Product = require('../models/products.js').product
+var Order = require('../../../models/orders.js').order
+var pMethod = require('../../../models/pmethods.js').pMethod
+var Product = require('../../../models/products.js').product
 
 router.use(session({
 	cookie: {

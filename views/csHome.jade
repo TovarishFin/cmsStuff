@@ -1,0 +1,8 @@
+extends layout
+block content
+	h1 Customer Service Home
+	for x in orders
+		p item name: #{x.itemName}
+		p order status: #{x.orderStatus}
+	
+	#{orders}

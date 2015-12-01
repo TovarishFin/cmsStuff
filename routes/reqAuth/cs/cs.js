@@ -6,5 +6,6 @@ router.use(require('./addcustomer'));
 router.use(require('./addorder'));
 router.use(require('./payment'));
 router.use(require('./shipping.js'));
+router.use(require('./home'));
 
 module.exports=router;

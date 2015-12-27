@@ -23,9 +23,7 @@ app.set('view engine', 'jade');
 
 //test routes for testing....
 app.get('/test',function(req,res){
-	User.find({},function(err,users){
-		res.json(users);
-	});
+	res.send('test');
 });
 
 // include favicon
